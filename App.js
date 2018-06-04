@@ -13,6 +13,7 @@ import sets from './reducers';
 import MyFlashcardSets from './Components/MyFlashcardSets';
 import AddFlashcardSet from './Components/AddFlashcardSet';
 import SingleFlashcardSet from './Components/SingleFlashcardSet';
+import QuizView from './Components/QuizView';
 import { white, purple, midBlack } from './utils/colours';
 
 const logger = createLogger();
@@ -83,6 +84,16 @@ const MainNavigator = createStackNavigator({
         backgroundColor: midBlack,
       },
       headerTitle: navigation.state.params.itemName
+    })
+  },
+  QuizView: {
+    screen: QuizView,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: midBlack,
+      },
+      headerTitle: `${navigation.state.params.itemName} Quiz`
     })
   }
 })

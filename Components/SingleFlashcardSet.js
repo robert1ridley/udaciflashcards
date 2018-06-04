@@ -37,10 +37,17 @@ class SingleFlashcardSet extends React.Component {
   render() {
     const { navigation } = this.props;
     const itemId = navigation.getParam('itemId');
+    const itemName = navigation.getParam('itemName');
     return (
       <View style={styles.pageContainer}>
         <TouchableOpacity style={styles.buttonStyle} onPress={() => this.setState({isVisible: true})}>
           <Text style={styles.buttonText}>Add Flashcard</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.quizButtonStyle} onPress={() => this.props.navigation.navigate(
+                  'QuizView',
+                  { itemName: itemName }
+                )}>
+          <Text style={styles.quizButtonText}>Start Quiz</Text>
         </TouchableOpacity>
         <View>
           <Modal 
@@ -110,6 +117,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: '70%',
     padding: 15
+  },
+  quizButtonStyle: {
+    backgroundColor: white,
+    marginTop: 20,
+    width: '70%',
+    padding: 15
+  },
+  quizButtonText: {
+    color: purple,
+    textAlign: 'center'
   },
   inputContainer: {
     padding: 2,
