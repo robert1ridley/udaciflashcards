@@ -1,11 +1,20 @@
-import { FETCH_SETS } from '../actions/flashcardSets'
+import { FETCH_SETS, ADD_SET } from '../actions/flashcardSets'
 
-function sets (state = {}, action) {
+const initialState = {
+  sets: []
+};
+
+function sets (state = initialState, action) {
   switch (action.type) {
     case FETCH_SETS :
       return {
         ...state,
-        ...action.sets,
+        sets: action.sets
+      }
+    case ADD_SET :
+      return {
+        ...state,
+        sets: [...state.sets, action.set]
       }
     default :
       return state

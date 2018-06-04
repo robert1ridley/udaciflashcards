@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import { Header } from 'react-native-elements';
 import { white, purple } from '../utils/colours';
 import { generateUid } from '../utils/helpers';
 import { addFlashcardSet } from '../utils/api';
 import { NavigationActions } from 'react-navigation';
+import { addSet } from '../actions/flashcardSets';
 
 class AddFlashcardSet extends React.Component {
   state = {
@@ -20,6 +22,9 @@ class AddFlashcardSet extends React.Component {
       flashcards: []
     }
     addFlashcardSet(data)
+    .then(() => 
+      this.props.dispatch(addSet(data))
+    )
     .then(this.props.navigation.dispatch(NavigationActions.back({key: 'AddFlashcardSet'})));
   }
 
@@ -82,4 +87,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default AddFlashcardSet;
+export default connect()(AddFlashcardSet);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, ScrollView, StyleSheet, FlatList } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
 import { Card, Header } from 'react-native-elements';
 import { fetchFlashcardSets } from '../utils/api';
 import { formatData } from '../utils/helpers';
@@ -8,43 +9,21 @@ import { purple, white, black, grey } from '../utils/colours';
 import { fetchSets } from '../actions/flashcardSets';
 
 class MyFlashcardSets extends React.Component {
-  state = {
-    data: {}
-  }
   componentDidMount() {
     fetchFlashcardSets()
       .then(result => 
         formatData(result)
       )
       .then(data => {
-        this.setState({
-          data: data
-        })
         this.props.dispatch(fetchSets(data))
       }
     )
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.sets !== nextProps.sets) {
-      fetchFlashcardSets()
-      .then(result => 
-        formatData(result)
-      )
-      .then(data => {
-        this.setState({
-          data: data
-        })
-          this.props.dispatch(fetchSets(data))
-        }
-      )
-    }
-  }
-
   _keyExtractor = (item, index) => item.id;
 
   render() {
-    const { data } = this.state;
+    const { sets } = this.props;
     return (
       <View style={styles.pageContainer}>
         <Header
@@ -52,14 +31,19 @@ class MyFlashcardSets extends React.Component {
           centerComponent={{ text: 'FLASHCARD SETS', style: { color: white } }}
         />
         {
-          data &&
+          sets &&
           <FlatList
-            data={data}
+            data={sets}
             renderItem={({item}) => 
-              <Card>
-                <Text style={styles.headText}>{item.setName}</Text>
-                <Text style={styles.subText}>{`${item.flashcards.length} Flashcards`}</Text>
-              </Card>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('SingleFlashcardSet')}
+              >
+                <Card>
+                  <Text style={styles.headText}>{item.setName}</Text>
+                  <Text style={styles.subText}>{`${item.flashcards.length} Flashcards`}</Text>
+                </Card>
+              </TouchableOpacity>
+
             }
             keyExtractor={this._keyExtractor}
           />
@@ -84,7 +68,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  sets: state
+  sets: state.sets
 });
 
 
