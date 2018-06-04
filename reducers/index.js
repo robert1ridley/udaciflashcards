@@ -20,7 +20,7 @@ function sets (state = initialState, action) {
       return {
         ...state,
         sets: [...state.sets.map((item) => ({...item,
-          flashcards: item.id === action.setId ? item.flashcards.concat[action.flashcard] : item.flashcards}))]
+          flashcards: item.id === action.setId ? item.flashcards.concat([action.flashcard]) : item.flashcards}))]
       }
     default :
       return state

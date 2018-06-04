@@ -28,9 +28,9 @@ class SingleFlashcardSet extends React.Component {
     const itemName = navigation.getParam('itemName');
     const itemId = navigation.getParam('itemId');
     addFlashcardToSet(itemName, flashcard)
-    // .then(() => {
-    //   this.props.dispatch(addFlashcard(itemId, flashcard))
-    // })
+    .then(() => {
+      this.props.dispatch(addFlashcard(itemId, flashcard))
+    })
     .then(() => this.setState({isVisible: visible}))
   }
 
