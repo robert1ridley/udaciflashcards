@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Modal, TouchableOpacity, TextInput } from 'react-native';
+import { Badge } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { purple, white, grey } from '../utils/colours';
 import { addFlashcardToSet } from '../utils/api';
@@ -40,7 +41,12 @@ class SingleFlashcardSet extends React.Component {
     const itemName = navigation.getParam('itemName');
     return (
       <View style={styles.pageContainer}>
-        <Text style={styles.info}>Total Flashcards: 5</Text>
+        <Text style={styles.info}>Total Flashcards: </Text>
+        <Badge
+          containerStyle={{margin: 10, backgroundColor: purple}}
+          value={3}
+          textStyle={{ color: white }}
+        />
         <TouchableOpacity style={styles.buttonStyle} onPress={() => this.setState({isVisible: true})}>
           <Text style={styles.buttonText}>Add Flashcard</Text>
         </TouchableOpacity>
