@@ -40,6 +40,7 @@ class SingleFlashcardSet extends React.Component {
     const itemName = navigation.getParam('itemName');
     return (
       <View style={styles.pageContainer}>
+        <Text style={styles.info}>Total Flashcards: 5</Text>
         <TouchableOpacity style={styles.buttonStyle} onPress={() => this.setState({isVisible: true})}>
           <Text style={styles.buttonText}>Add Flashcard</Text>
         </TouchableOpacity>
@@ -138,6 +139,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: white,
     height: 50,
+  },
+  info: {
+    marginTop: 100,
+    fontSize: 16,
+    fontWeight: '500',
+    color: grey
   }
 })
 
