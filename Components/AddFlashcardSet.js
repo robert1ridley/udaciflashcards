@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import { connect } from 'react-redux';
 import { white, purple } from '../utils/colours';
 import { generateUid } from '../utils/helpers';
-import { addFlashcardSet } from '../utils/api';
+import { addFlashcardSet, clearAll } from '../utils/api';
 import { NavigationActions } from 'react-navigation';
 import { addSet } from '../actions/flashcardSets';
 
