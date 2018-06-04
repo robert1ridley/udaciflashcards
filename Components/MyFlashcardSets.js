@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { View, Text, ScrollView, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import { Card, Header } from 'react-native-elements';
+import { Card } from 'react-native-elements';
 import { fetchFlashcardSets } from '../utils/api';
 import { formatData } from '../utils/helpers';
 import { purple, white, black, grey } from '../utils/colours';
@@ -26,17 +26,16 @@ class MyFlashcardSets extends React.Component {
     const { sets } = this.props;
     return (
       <View style={styles.pageContainer}>
-        <Header
-          placement="left"
-          centerComponent={{ text: 'FLASHCARD SETS', style: { color: white } }}
-        />
         {
           sets &&
           <FlatList
             data={sets}
             renderItem={({item}) => 
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('SingleFlashcardSet')}
+                onPress={() => this.props.navigation.navigate(
+                  'SingleFlashcardSet',
+                  { itemId: item.id, itemName: item.setName }
+                )}
               >
                 <Card>
                   <Text style={styles.headText}>{item.setName}</Text>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Header } from 'react-native-elements';
 import { white, purple } from '../utils/colours';
 import { generateUid } from '../utils/helpers';
 import { addFlashcardSet } from '../utils/api';
@@ -31,10 +30,6 @@ class AddFlashcardSet extends React.Component {
   render() {
     return (
       <View style={styles.pageContainer}>
-        <Header
-            placement="left"
-            centerComponent={{ text: 'ADD FLASHCARD SET', style: { color: white } }}
-          />
         <View style={styles.contentContainer}>
           <View style={styles.inputContainer}>
             <TextInput
