@@ -24,10 +24,11 @@ class MyFlashcardSets extends React.Component {
 
   render() {
     const { sets } = this.props;
+    console.log(sets.length);
     return (
       <View style={styles.pageContainer}>
         {
-          sets &&
+          sets.length!==0 ?
           <FlatList
             data={sets}
             renderItem={({item}) => 
@@ -45,7 +46,8 @@ class MyFlashcardSets extends React.Component {
 
             }
             keyExtractor={this._keyExtractor}
-          />
+          /> :
+          <Text>You haven't added any flashcard sets yet!</Text>
         }
       </View>
     )

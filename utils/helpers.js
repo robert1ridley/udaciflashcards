@@ -8,7 +8,7 @@ export const generateUid = () => {
 
 export function formatData (results) {
   results = JSON.parse(results);
-  results = Object.keys(results).map(key => results[key]);
+  results = results === null ? [] : Object.keys(results).map(key => results[key]);
   return results;
 }
 
