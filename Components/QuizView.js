@@ -1,28 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import { Card } from 'react-native-elements';
 import { questionRandomizer } from '../utils/helpers';
 import { midBlack, purple, white } from '../utils/colours';
+import { setQuizQuestions } from '../actions/flashcardSets';
 
 class QuizView extends React.Component {
-  state = {
-    questions: [],
-    currentQuestionIndex: 0,
-    correctAnswers: 0,
-    answerVisible: false
-  }
 
   componentDidMount() {
     const { navigation } = this.props;
     const thisSet = navigation.getParam('thisSet');
     const randomizedQuestions = questionRandomizer(thisSet.flashcards)
-    this.setState({
-      questions: randomizedQuestions
-    });
+    this.props.dispatch(setQuizQuestions(randomizedQuestions));
   }
 
   render () {
-    const { questions, currentQuestionIndex, correctAnswers, answerVisible } = this.state;
+    const { questions, currentQuestionIndex, correctAnswers } = this.props;
     return (
       <View style={styles.containerView}>
         <Card containerStyle={styles.questionCard}>
@@ -73,4 +67,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default QuizView;
+const mapStateToProps = state => ({
+  questions: state.questions,
+  currentQuestionIndex: state.currentQuestionIndex,
+  correctAnswers: state.correctAnswers,
+})
+
+export default connect(mapStateToProps)(QuizView);
