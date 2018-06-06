@@ -24,7 +24,10 @@ class AddFlashcardSet extends React.Component {
     .then(() => 
       this.props.dispatch(addSet(data))
     )
-    .then(this.props.navigation.dispatch(NavigationActions.back({key: 'AddFlashcardSet'})));
+    .then(this.props.navigation.dispatch(NavigationActions.back({key: 'AddFlashcardSet'})))
+    .then(this.setState({
+      setName: ''
+    }))
   }
 
   render() {
