@@ -15,6 +15,8 @@ import AddFlashcardSet from './Components/AddFlashcardSet';
 import SingleFlashcardSet from './Components/SingleFlashcardSet';
 import QuizView from './Components/QuizView';
 import { white, purple, midBlack } from './utils/colours';
+import QuizQuestion from './Components/QuizQuestion';
+import QuizAnswer from './Components/QuizAnswer';
 
 const logger = createLogger();
 const store = createStore(
@@ -88,6 +90,26 @@ const MainNavigator = createStackNavigator({
   },
   QuizView: {
     screen: QuizView,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: midBlack,
+      },
+      headerTitle: `${navigation.state.params.itemName} Quiz`
+    })
+  },
+  QuizQuestion: {
+    screen: QuizQuestion,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: midBlack,
+      },
+      headerTitle: `${navigation.state.params.itemName} Quiz`
+    })
+  },
+  QuizAnswer: {
+    screen: QuizAnswer,
     navigationOptions: ({ navigation }) => ({
       headerTintColor: white,
       headerStyle: {
