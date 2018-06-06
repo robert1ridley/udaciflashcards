@@ -32,7 +32,7 @@ class SingleFlashcardSet extends React.Component {
     .then(() => {
       this.props.dispatch(addFlashcard(itemId, flashcard))
     })
-    .then(() => this.setState({isVisible: visible}))
+    .then(() => this.setState({isVisible: visible, question: '', answer: ''}))
   }
 
   render() {
