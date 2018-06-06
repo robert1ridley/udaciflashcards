@@ -4,6 +4,7 @@ export const ADD_FLASHCARD = 'ADD_FLASHCARD';
 export const RESET_QUIZ = 'RESET_QUIZ';
 export const SET_QUIZ_QUESTIONS = 'SET_QUIZ_QUESTIONS';
 export const GET_NEXT_QUESTION = 'GET_NEXT_QUESTION';
+export const CORRECT_ANSWER = 'CORRECT_ANSWER';
 
 export function fetchSets (sets) {
   return {
@@ -37,6 +38,12 @@ export function setQuizQuestions (questions) {
   return {
     type: SET_QUIZ_QUESTIONS,
     questions
+  }
+}
+
+export function correctAnswer () {
+  return {
+    type: CORRECT_ANSWER
   }
 }
 

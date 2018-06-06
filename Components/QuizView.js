@@ -9,6 +9,7 @@ import QuizQuestion from './QuizQuestion';
 
 class QuizView extends React.Component {
   componentDidMount() {
+    console.log("MOUNTED")
     const { navigation } = this.props;
     const thisSet = navigation.getParam('thisSet');
     const randomizedQuestions = questionRandomizer(thisSet.flashcards)

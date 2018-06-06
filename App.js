@@ -17,6 +17,7 @@ import QuizView from './Components/QuizView';
 import { white, purple, midBlack } from './utils/colours';
 import QuizQuestion from './Components/QuizQuestion';
 import QuizAnswer from './Components/QuizAnswer';
+import QuizResult from './Components/QuizResult';
 
 const logger = createLogger();
 const store = createStore(
@@ -105,6 +106,7 @@ const MainNavigator = createStackNavigator({
       headerStyle: {
         backgroundColor: midBlack,
       },
+      headerLeft: null,
       headerTitle: `${navigation.state.params.itemName} Quiz`
     })
   },
@@ -115,6 +117,18 @@ const MainNavigator = createStackNavigator({
       headerStyle: {
         backgroundColor: midBlack,
       },
+      headerLeft: null,
+      headerTitle: `${navigation.state.params.itemName} Quiz`
+    })
+  },
+  QuizResult: {
+    screen: QuizResult,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: midBlack,
+      },
+      headerLeft: null,
       headerTitle: `${navigation.state.params.itemName} Quiz`
     })
   }

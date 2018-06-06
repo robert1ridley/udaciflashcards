@@ -1,4 +1,4 @@
-import { FETCH_SETS, ADD_SET, ADD_FLASHCARD, RESET_QUIZ, SET_QUIZ_QUESTIONS, GET_NEXT_QUESTION } from '../actions/flashcardSets'
+import { FETCH_SETS, ADD_SET, ADD_FLASHCARD, RESET_QUIZ, SET_QUIZ_QUESTIONS, GET_NEXT_QUESTION, CORRECT_ANSWER } from '../actions/flashcardSets'
 
 const initialState = {
   sets: [],
@@ -43,7 +43,13 @@ function sets (state = initialState, action) {
     case GET_NEXT_QUESTION :
       return {
         ...state,
-        currentQuestionIndex: state.currentQuestionIndex + 1
+        currentQuestionIndex:  state.questions.length-1 === state.currentQuestionIndex ? state.currentQuestionIndex : state.currentQuestionIndex  + 1
+      }
+    case CORRECT_ANSWER :
+      return {
+        ...state,
+        correctAnswers: state.correctAnswers + 1,
+        currentQuestionIndex:  state.questions.length-1 === state.currentQuestionIndex ? state.currentQuestionIndex : state.currentQuestionIndex  + 1
       }    
     default :
       return state

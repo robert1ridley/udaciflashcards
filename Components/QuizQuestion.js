@@ -7,9 +7,7 @@ import { midBlack, purple, white } from '../utils/colours';
 class QuizQuestion extends React.Component {
   render () {
     const { questions, currentQuestionIndex, correctAnswers, navigation, itemName } = this.props;
-    console.log(navigation)
     let itemTitle =  navigation ? navigation.getParam('itemName') : itemName;
-    // const itemName = navigation.getParam('itemName');
     return (
       <View style={styles.containerView}>
         <Card containerStyle={styles.questionCard}>
@@ -19,7 +17,7 @@ class QuizQuestion extends React.Component {
               <Text style={styles.questionText}>{questions[currentQuestionIndex].question}</Text>
               <TouchableOpacity style={styles.showAnswerButtonStyle} onPress={() => this.props.navigation.navigate(
                 'QuizAnswer',
-                { itemName: itemTitle }
+                { itemName: itemTitle, idFromQuestion: questions[currentQuestionIndex].id }
               )}>
                 <Text style={styles.buttonText}>Show Answer</Text>
               </TouchableOpacity>
