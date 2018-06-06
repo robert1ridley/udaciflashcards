@@ -36,26 +36,31 @@ class SingleFlashcardSet extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, sets } = this.props;
     const itemId = navigation.getParam('itemId');
     const itemName = navigation.getParam('itemName');
+    const thisSetList = sets.filter(item => item.id === itemId);
+    thisSet = thisSetList[0];
     return (
       <View style={styles.pageContainer}>
         <Text style={styles.info}>Total Flashcards: </Text>
         <Badge
           containerStyle={{margin: 10, backgroundColor: purple}}
-          value={3}
+          value={thisSet.flashcards.length}
           textStyle={{ color: white }}
         />
         <TouchableOpacity style={styles.buttonStyle} onPress={() => this.setState({isVisible: true})}>
           <Text style={styles.buttonText}>Add Flashcard</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.quizButtonStyle} onPress={() => this.props.navigation.navigate(
-                  'QuizView',
-                  { itemName: itemName }
-                )}>
-          <Text style={styles.quizButtonText}>Start Quiz</Text>
-        </TouchableOpacity>
+        {
+          thisSet.flashcards.length !== 0 &&
+          <TouchableOpacity style={styles.quizButtonStyle} onPress={() => this.props.navigation.navigate(
+            'QuizView',
+            { itemName: itemName, itemId: itemId, thisSet: thisSet }
+          )}>
+            <Text style={styles.quizButtonText}>Start Quiz</Text>
+          </TouchableOpacity>
+        }
         <View>
           <Modal 
             visible={this.state.isVisible}
@@ -154,4 +159,8 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect()(SingleFlashcardSet);
+const mapStateToProps = state => ({
+  sets: state.sets
+})
+
+export default connect(mapStateToProps)(SingleFlashcardSet);

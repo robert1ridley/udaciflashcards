@@ -24,7 +24,6 @@ class MyFlashcardSets extends React.Component {
 
   render() {
     const { sets } = this.props;
-    console.log(sets.length);
     return (
       <View style={styles.pageContainer}>
         {
@@ -47,7 +46,9 @@ class MyFlashcardSets extends React.Component {
             }
             keyExtractor={this._keyExtractor}
           /> :
-          <Text>You haven't added any flashcard sets yet!</Text>
+          <View style={styles.notificationContainer}>
+            <Text style={styles.subText}>You haven't added any flashcard sets yet!</Text>
+          </View>
         }
       </View>
     )
@@ -65,6 +66,11 @@ const styles = StyleSheet.create({
   subText: {
     color: grey,
     fontWeight: "100"
+  },
+  notificationContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 

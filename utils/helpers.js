@@ -12,3 +12,8 @@ export function formatData (results) {
   return results;
 }
 
+export function questionRandomizer(thisSet) {
+  for(var j, x, i = thisSet.length; i; j = Math.floor(Math.random() * i), x = thisSet[--i], thisSet[i] = thisSet[j], thisSet[j] = x);
+  return thisSet;
+}
+

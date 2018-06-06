@@ -1,7 +1,11 @@
-import { FETCH_SETS, ADD_SET, ADD_FLASHCARD } from '../actions/flashcardSets'
+import { FETCH_SETS, ADD_SET, ADD_FLASHCARD, RESET_QUIZ } from '../actions/flashcardSets'
 
 const initialState = {
-  sets: []
+  sets: [],
+  questions: [],
+  currentQuestionIndex: 0,
+  correctAnswers: 0,
+  answerVisible: false
 };
 
 function sets (state = initialState, action) {
@@ -21,6 +25,14 @@ function sets (state = initialState, action) {
         ...state,
         sets: [...state.sets.map((item) => ({...item,
           flashcards: item.id === action.setId ? item.flashcards.concat([action.flashcard]) : item.flashcards}))]
+      }
+    case RESET_QUIZ :
+      return {
+        ...state,
+        questions: [],
+        currentQuestionIndex: 0,
+        correctAnswers: 0,
+        answerVisible: false
       }
     default :
       return state
