@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { white, purple } from '../utils/colours';
 import { generateUid } from '../utils/helpers';
@@ -33,7 +33,7 @@ class AddFlashcardSet extends React.Component {
   render() {
     return (
       <View style={styles.pageContainer}>
-        <View style={styles.contentContainer}>
+        <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" enabled>
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.inputStyle}
@@ -46,7 +46,7 @@ class AddFlashcardSet extends React.Component {
           <TouchableOpacity style={styles.buttonStyle} onPress={this.submitNewSet}>
             <Text style={styles.buttonText}>Submit</Text>
           </TouchableOpacity>
-        </View>
+        </KeyboardAvoidingView>
       </View>
     )
   }
