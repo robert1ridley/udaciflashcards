@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Modal, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Modal, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
 import { Badge } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { purple, white, grey } from '../utils/colours';
@@ -67,7 +67,7 @@ class SingleFlashcardSet extends React.Component {
             animationType="slide"
             transparent={false}
           >
-            <View style={styles.modalInnerContainer}>
+            <KeyboardAvoidingView style={styles.modalInnerContainer} behavior="padding" enabled>
               <View style={styles.inputContainer}>
                 <TextInput
                   style={styles.inputStyle}
@@ -94,7 +94,7 @@ class SingleFlashcardSet extends React.Component {
                 }}>
                 <Text style={styles.buttonText}>Cancel</Text>
               </TouchableOpacity>
-            </View>
+            </KeyboardAvoidingView>
           </Modal>
         </View>
       </View>
