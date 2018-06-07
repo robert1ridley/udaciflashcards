@@ -48,11 +48,10 @@ const styles = StyleSheet.create({
     color: midBlack,
     fontSize: 30,
     fontWeight: "300",
-    marginBottom:50
+    marginBottom: 50
   },
   showAnswerButtonStyle: {
     backgroundColor: purple,
-    // marginTop: 20,
     width: '70%',
     padding: 15
   },
