@@ -46,64 +46,66 @@ class SingleFlashcardSet extends React.Component {
     const itemName = navigation.getParam('itemName');
     const thisSetList = sets.filter(item => item.id === itemId);
     thisSet = thisSetList[0];
-    return (
-      <View style={styles.pageContainer}>
-        <Text style={styles.info}>Total Flashcards: </Text>
-        <Badge
-          containerStyle={{margin: 10, backgroundColor: purple}}
-          value={thisSet.flashcards.length}
-          textStyle={{ color: white }}
-        />
-        <TouchableOpacity style={styles.buttonStyle} onPress={() => this.setState({isVisible: true})}>
-          <Text style={styles.buttonText}>Add Flashcard</Text>
-        </TouchableOpacity>
-        {
-          thisSet.flashcards.length !== 0 &&
-          <TouchableOpacity style={styles.quizButtonStyle} onPress={() => this.props.navigation.navigate(
-            'QuizView',
-            { itemName: itemName, itemId: itemId, thisSet: thisSet }
-          )}>
-            <Text style={styles.quizButtonText}>Start Quiz</Text>
+    if(thisSet) {
+      return (
+        <View style={styles.pageContainer}>
+          <Text style={styles.info}>Total Flashcards: </Text>
+          <Badge
+            containerStyle={{margin: 10, backgroundColor: purple}}
+            value={thisSet.flashcards.length}
+            textStyle={{ color: white }}
+          />
+          <TouchableOpacity style={styles.buttonStyle} onPress={() => this.setState({isVisible: true})}>
+            <Text style={styles.buttonText}>Add Flashcard</Text>
           </TouchableOpacity>
-        }
-        <View>
-          <Modal 
-            visible={this.state.isVisible}
-            animationType="slide"
-            transparent={false}
-          >
-            <KeyboardAvoidingView style={styles.modalInnerContainer} behavior="padding" enabled>
-              <View style={styles.inputContainer}>
-                <TextInput
-                  style={styles.inputStyle}
-                  placeholder="Enter Question"
-                  ref= {(el) => { this.question = el; }}
-                  onChangeText={(question) => this.setState({question})}
-                  value={this.state.question}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <TextInput
-                  style={styles.inputStyle}
-                  placeholder="Enter Answer"
-                  ref= {(el) => { this.answer = el; }}
-                  onChangeText={(answer) => this.setState({answer})}
-                  value={this.state.answer}
-                />
-              </View>
-              <TouchableOpacity style={styles.buttonStyle} onPress={() => this.submitNewFlashcard(!this.state.isVisible)}>
-                <Text style={styles.buttonText}>Submit</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.cancelButtonStyle} onPress={() => {
-                  this.setModalVisible(!this.state.isVisible);
-                }}>
-                <Text style={styles.buttonText}>Cancel</Text>
-              </TouchableOpacity>
-            </KeyboardAvoidingView>
-          </Modal>
+          {
+            thisSet.flashcards.length !== 0 &&
+            <TouchableOpacity style={styles.quizButtonStyle} onPress={() => this.props.navigation.navigate(
+              'QuizView',
+              { itemName: itemName, itemId: itemId, thisSet: thisSet }
+            )}>
+              <Text style={styles.quizButtonText}>Start Quiz</Text>
+            </TouchableOpacity>
+          }
+          <View>
+            <Modal 
+              visible={this.state.isVisible}
+              animationType="slide"
+              transparent={false}
+            >
+              <KeyboardAvoidingView style={styles.modalInnerContainer} behavior="padding" enabled>
+                <View style={styles.inputContainer}>
+                  <TextInput
+                    style={styles.inputStyle}
+                    placeholder="Enter Question"
+                    ref= {(el) => { this.question = el; }}
+                    onChangeText={(question) => this.setState({question})}
+                    value={this.state.question}
+                  />
+                </View>
+                <View style={styles.inputContainer}>
+                  <TextInput
+                    style={styles.inputStyle}
+                    placeholder="Enter Answer"
+                    ref= {(el) => { this.answer = el; }}
+                    onChangeText={(answer) => this.setState({answer})}
+                    value={this.state.answer}
+                  />
+                </View>
+                <TouchableOpacity style={styles.buttonStyle} onPress={() => this.submitNewFlashcard(!this.state.isVisible)}>
+                  <Text style={styles.buttonText}>Submit</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.cancelButtonStyle} onPress={() => {
+                    this.setModalVisible(!this.state.isVisible);
+                  }}>
+                  <Text style={styles.buttonText}>Cancel</Text>
+                </TouchableOpacity>
+              </KeyboardAvoidingView>
+            </Modal>
+          </View> 
         </View>
-      </View>
-    )
+      )
+    } else return <View/>
   }
 }
 

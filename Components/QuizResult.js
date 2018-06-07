@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { midBlack, white, purple } from '../utils/colours';
+import { generateUid } from '../utils/helpers';
 
 class QuizResult extends React.Component {
   render () {
@@ -11,15 +12,16 @@ class QuizResult extends React.Component {
       <View style={styles.pageContainer}>
         <Text style={styles.resultText}>{`${correctAnswers}/${questions.length}`}</Text>
         <TouchableOpacity style={styles.purpleButtonStyle} onPress={() => this.props.navigation.navigate(
-          'SingleFlashcardSet',
-          { itemName: itemName }
+          'QuizView',
+          { itemName: itemName, quizId: generateUid() }
         )}>
           <Text style={styles.regButtonText}>Retake Quiz</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.whiteButtonStyle} onPress={() => this.props.navigation.navigate(
-          'Home'
+          'SingleFlashcardSet',
+          { itemName: itemName }
         )}>
-          <Text style={styles.whiteButtonText}>Back Home</Text>
+          <Text style={styles.whiteButtonText}>Back to Deck</Text>
         </TouchableOpacity>
       </View>
     )

@@ -4,7 +4,8 @@ const initialState = {
   sets: [],
   questions: [],
   currentQuestionIndex: 0,
-  correctAnswers: 0
+  correctAnswers: 0,
+  numberOfQuestionsAsked: 0
 };
 
 function sets (state = initialState, action) {
@@ -31,6 +32,7 @@ function sets (state = initialState, action) {
         questions: [],
         currentQuestionIndex: 0,
         correctAnswers: 0,
+        numberOfQuestionsAsked: 0,
         answerVisible: false
       }
     case SET_QUIZ_QUESTIONS :
@@ -38,18 +40,21 @@ function sets (state = initialState, action) {
         ...state,
         questions: action.questions,
         currentQuestionIndex: 0,
-        correctAnswers: 0
+        correctAnswers: 0,
+        numberOfQuestionsAsked: 0
       }
     case GET_NEXT_QUESTION :
       return {
         ...state,
-        currentQuestionIndex:  state.questions.length-1 === state.currentQuestionIndex ? state.currentQuestionIndex : state.currentQuestionIndex  + 1
+        currentQuestionIndex:  state.questions.length-1 === state.currentQuestionIndex ? state.currentQuestionIndex : state.currentQuestionIndex  + 1,
+        numberOfQuestionsAsked: state.numberOfQuestionsAsked + 1
       }
     case CORRECT_ANSWER :
       return {
         ...state,
         correctAnswers: state.correctAnswers + 1,
-        currentQuestionIndex:  state.questions.length-1 === state.currentQuestionIndex ? state.currentQuestionIndex : state.currentQuestionIndex  + 1
+        currentQuestionIndex:  state.questions.length-1 === state.currentQuestionIndex ? state.currentQuestionIndex : state.currentQuestionIndex  + 1,
+        numberOfQuestionsAsked: state.numberOfQuestionsAsked + 1
       }    
     default :
       return state

@@ -65,7 +65,7 @@ class QuizAnswer extends React.Component {
   }
 
   render () {
-    const { questions, currentQuestionIndex, correctAnswers, navigation } = this.props;
+    const { questions, currentQuestionIndex, correctAnswers, navigation, numberOfQuestionsAsked } = this.props;
     const { hideAnswer } = this.state;
     const itemName = navigation.getParam('itemName');
     return (
@@ -73,14 +73,17 @@ class QuizAnswer extends React.Component {
         <Card containerStyle={styles.questionCard}>
           {
             (questions.length !== 0 && !hideAnswer) &&
-            <View style={styles.questionCardInner}>
-              <Text style={styles.questionText}>{questions[currentQuestionIndex].answer}</Text>
-              <TouchableOpacity style={styles.correctAnswerButtonStyle} onPress={() => this.correctAnswer()}>
-                <Text style={styles.buttonText}>Correct</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.incorrectAnswerButtonStyle} onPress={() => this.incorrectAnswer()}>
-                <Text style={styles.buttonText}>Incorrect</Text>
-              </TouchableOpacity>
+            <View style={{height: '100%'}}>
+              <View style={styles.questionCardInner}>
+                <Text style={styles.questionText}>{questions[currentQuestionIndex].answer}</Text>
+                <TouchableOpacity style={styles.correctAnswerButtonStyle} onPress={() => this.correctAnswer()}>
+                  <Text style={styles.buttonText}>Correct</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.incorrectAnswerButtonStyle} onPress={() => this.incorrectAnswer()}>
+                  <Text style={styles.buttonText}>Incorrect</Text>
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.remainingQuestionsText}>{`Question Remaining: ${questions.length - numberOfQuestionsAsked}`}</Text>
             </View>
           }
         </Card>
@@ -100,6 +103,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   questionCardInner: {
+    height: '95%',
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
@@ -124,6 +128,13 @@ const styles = StyleSheet.create({
   buttonText: {
     color: white,
     textAlign: 'center'
+  },
+  remainingQuestionsText: {
+    textAlign: 'right',
+    marginRight: 5,
+    fontSize: 15,
+    color: midBlack,
+    fontWeight: "300",
   }
 })
 
@@ -131,6 +142,7 @@ const mapStateToProps = state => ({
   questions: state.questions,
   currentQuestionIndex: state.currentQuestionIndex,
   correctAnswers: state.correctAnswers,
+  numberOfQuestionsAsked: state.numberOfQuestionsAsked
 })
 
 export default connect(mapStateToProps)(QuizAnswer);
