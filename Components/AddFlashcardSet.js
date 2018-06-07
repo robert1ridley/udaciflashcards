@@ -13,21 +13,26 @@ class AddFlashcardSet extends React.Component {
   }
 
   submitNewSet = () => {
-    const setId = generateUid();
-
-    const data = {
-      setName: this.state.setName,
-      id: setId,
-      flashcards: []
+    if(this.state.setName === '') {
+      alert("Don't leave any fields blank!")
     }
-    addFlashcardSet(data)
-    .then(() => 
-      this.props.dispatch(addSet(data))
-    )
-    .then(this.props.navigation.dispatch(NavigationActions.back({key: 'AddFlashcardSet'})))
-    .then(this.setState({
-      setName: ''
-    }))
+    else {
+      const setId = generateUid();
+
+      const data = {
+        setName: this.state.setName,
+        id: setId,
+        flashcards: []
+      }
+      addFlashcardSet(data)
+      .then(() => 
+        this.props.dispatch(addSet(data))
+      )
+      .then(this.props.navigation.dispatch(NavigationActions.back({key: 'AddFlashcardSet'})))
+      .then(this.setState({
+        setName: ''
+      }))
+    }
   }
 
   render() {

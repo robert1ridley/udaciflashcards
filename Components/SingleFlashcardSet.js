@@ -19,20 +19,25 @@ class SingleFlashcardSet extends React.Component {
   }
 
   submitNewFlashcard(visible) {
-    const setId = generateUid();
-    const flashcard = {
-      question: this.state.question,
-      answer: this.state.answer,
-      id: setId
+    if (this.state.question === '' || this.state.answer === '') {
+      alert("Don't leave any fields blank!")
     }
-    const { navigation } = this.props;
-    const itemName = navigation.getParam('itemName');
-    const itemId = navigation.getParam('itemId');
-    addFlashcardToSet(itemName, flashcard)
-    .then(() => {
-      this.props.dispatch(addFlashcard(itemId, flashcard))
-    })
-    .then(() => this.setState({isVisible: visible, question: '', answer: ''}))
+    else {
+      const setId = generateUid();
+      const flashcard = {
+        question: this.state.question,
+        answer: this.state.answer,
+        id: setId
+      }
+      const { navigation } = this.props;
+      const itemName = navigation.getParam('itemName');
+      const itemId = navigation.getParam('itemId');
+      addFlashcardToSet(itemName, flashcard)
+      .then(() => {
+        this.props.dispatch(addFlashcard(itemId, flashcard))
+      })
+      .then(() => this.setState({isVisible: visible, question: '', answer: ''}))
+    }
   }
 
   render() {
