@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   },
   questionCard: {
     height: '90%',
+    marginTop: 0,
     justifyContent: 'center',
   },
   questionCardInner: {
@@ -47,11 +48,11 @@ const styles = StyleSheet.create({
     color: midBlack,
     fontSize: 30,
     fontWeight: "300",
-    marginBottom: 10
+    marginBottom:50
   },
   showAnswerButtonStyle: {
     backgroundColor: purple,
-    marginTop: 20,
+    // marginTop: 20,
     width: '70%',
     padding: 15
   },

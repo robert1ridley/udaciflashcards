@@ -54,7 +54,7 @@ class AddFlashcardSet extends React.Component {
 
 const styles = StyleSheet.create({
   pageContainer: {
-    flex: 1
+    flex: 1,
   },
   contentContainer: {
     flex: 1,
