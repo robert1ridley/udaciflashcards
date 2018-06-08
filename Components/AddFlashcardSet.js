@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
-import { white, purple } from '../utils/colours';
+import { white, darkGreen } from '../utils/colours';
 import { generateUid } from '../utils/helpers';
 import { addFlashcardSet, clearAll } from '../utils/api';
 import { NavigationActions } from 'react-navigation';
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     padding: 2,
-    backgroundColor: purple,
+    backgroundColor: darkGreen,
     width: '70%'
   },
   inputStyle: {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   buttonStyle: {
-    backgroundColor: purple,
+    backgroundColor: darkGreen,
     marginTop: 20,
     width: '70%',
     padding: 15

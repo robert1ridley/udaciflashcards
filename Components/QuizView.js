@@ -1,9 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Card } from 'react-native-elements';
 import { questionRandomizer } from '../utils/helpers';
-import { midBlack, purple, white } from '../utils/colours';
 import { setQuizQuestions, resetQuiz } from '../actions/flashcardSets';
 import QuizQuestion from './QuizQuestion';
 

@@ -14,11 +14,10 @@ import MyFlashcardSets from './Components/MyFlashcardSets';
 import AddFlashcardSet from './Components/AddFlashcardSet';
 import SingleFlashcardSet from './Components/SingleFlashcardSet';
 import QuizView from './Components/QuizView';
-import { white, purple, midBlack } from './utils/colours';
+import { white, darkGreen, darkBlue, grey } from './utils/colours';
 import QuizQuestion from './Components/QuizQuestion';
 import QuizAnswer from './Components/QuizAnswer';
 import QuizResult from './Components/QuizResult';
-import { grey } from './utils/colours';
 
 const logger = createLogger();
 const store = createStore(
@@ -54,7 +53,7 @@ const Tabs = createBottomTabNavigator({
     header: null
   },
   tabBarOptions: {
-    activeTintColor: purple,
+    activeTintColor: darkGreen,
     style: {
       height: 56,
       backgroundColor: white,
@@ -75,7 +74,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: midBlack
+        backgroundColor: darkBlue
       },
       title: 'My Flashcards'
     }
@@ -85,7 +84,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: midBlack,
+        backgroundColor: darkBlue,
       },
       headerTitle: navigation.state.params.itemName
     })
@@ -95,7 +94,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: midBlack,
+        backgroundColor: darkBlue,
       },
       headerTitle: `${navigation.state.params.itemName} Quiz`
     })
@@ -105,7 +104,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: midBlack,
+        backgroundColor: darkBlue,
       },
       headerLeft: null,
       headerTitle: `${navigation.state.params.itemName} Quiz`
@@ -116,7 +115,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: midBlack,
+        backgroundColor: darkBlue,
       },
       headerLeft: null,
       headerTitle: `${navigation.state.params.itemName} Quiz`
@@ -127,7 +126,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: midBlack,
+        backgroundColor: darkBlue,
       },
       headerLeft: null,
       headerTitle: `${navigation.state.params.itemName} Quiz`
@@ -140,7 +139,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
-          <StatusBar backgroundColor={midBlack} barStyle="light-content" />
+          <StatusBar backgroundColor={darkBlue} barStyle="light-content" />
           <MainNavigator />
         </View>
       </Provider>

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-elements';
-import { midBlack, purple, white } from '../utils/colours';
+import { darkBlue, darkGreen, white } from '../utils/colours';
 
 class QuizQuestion extends React.Component {
   render () {
@@ -49,13 +49,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   questionText: {
-    color: midBlack,
+    color: darkBlue,
     fontSize: 30,
     fontWeight: "300",
     marginBottom: 50
   },
   showAnswerButtonStyle: {
-    backgroundColor: purple,
+    backgroundColor: darkGreen,
     width: '70%',
     padding: 15
   },
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginRight: 5,
     fontSize: 15,
-    color: midBlack,
+    color: darkBlue,
     fontWeight: "300",
   }
 })

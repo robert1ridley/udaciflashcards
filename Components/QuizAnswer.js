@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-elements';
-import { midBlack, purple, white, green, red } from '../utils/colours';
+import { darkBlue, white, green, red } from '../utils/colours';
 import { correctAnswer, getNextQuestion } from '../actions/flashcardSets';
 
 class QuizAnswer extends React.Component {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   questionText: {
-    color: midBlack,
+    color: darkBlue,
     fontSize: 30,
     fontWeight: "300",
     marginBottom: 50
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginRight: 5,
     fontSize: 15,
-    color: midBlack,
+    color: darkBlue,
     fontWeight: "300",
   }
 })

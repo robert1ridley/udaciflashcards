@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { midBlack, white, purple } from '../utils/colours';
+import { darkBlue, white, darkGreen } from '../utils/colours';
 import { generateUid } from '../utils/helpers';
 
 class QuizResult extends React.Component {
@@ -35,13 +35,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   resultText: {
-    color: midBlack,
+    color: darkBlue,
     fontSize: 30,
     fontWeight: "300",
     marginBottom: 10
   },
   purpleButtonStyle: {
-    backgroundColor: purple,
+    backgroundColor: darkGreen,
     marginTop: 20,
     width: '70%',
     padding: 15
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   whiteButtonText: {
-    color: purple,
+    color: darkGreen,
     textAlign: 'center'
   }
 })

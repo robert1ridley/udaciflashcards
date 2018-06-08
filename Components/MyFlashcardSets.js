@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation';
 import { Card } from 'react-native-elements';
 import { fetchFlashcardSets } from '../utils/api';
 import { formatData } from '../utils/helpers';
-import { purple, white, black, grey } from '../utils/colours';
+import { white, black, grey } from '../utils/colours';
 import { fetchSets } from '../actions/flashcardSets';
 
 class MyFlashcardSets extends React.Component {

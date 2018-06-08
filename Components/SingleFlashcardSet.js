@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Modal, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
 import { Badge } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { purple, white, grey } from '../utils/colours';
+import { darkGreen, white, grey } from '../utils/colours';
 import { addFlashcardToSet } from '../utils/api';
 import { generateUid } from '../utils/helpers';
 import { addFlashcard } from '../actions/flashcardSets';
@@ -51,7 +51,7 @@ class SingleFlashcardSet extends React.Component {
         <View style={styles.pageContainer}>
           <Text style={styles.info}>Total Flashcards: </Text>
           <Badge
-            containerStyle={{margin: 10, backgroundColor: purple}}
+            containerStyle={{margin: 10, backgroundColor: darkGreen}}
             value={thisSet.flashcards.length}
             textStyle={{ color: white }}
           />
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     paddingRight: 60
   },
   buttonStyle: {
-    backgroundColor: purple,
+    backgroundColor: darkGreen,
     marginTop: 20,
     width: '70%',
     padding: 15
@@ -144,12 +144,12 @@ const styles = StyleSheet.create({
     padding: 15
   },
   quizButtonText: {
-    color: purple,
+    color: darkGreen,
     textAlign: 'center'
   },
   inputContainer: {
     padding: 2,
-    backgroundColor: purple,
+    backgroundColor: darkGreen,
     width: '100%',
     margin: 10
   },
