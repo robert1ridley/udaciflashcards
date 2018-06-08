@@ -1,6 +1,6 @@
 # Udaciflashcards
 
-Udaciflashcards, the final assessment project for Udacity's React course, is an IOS app created with React Native. Users can use the app to study sets of flashcards. Key functionalities of the app include allowing users to create their own decks, adding flashcards to a deck, and quizzing themselves on the flashcards in a deck.
+Udaciflashcards, the final assessment project for Udacity's React course, is an IOS app created with React Native. Users can use the app to study sets of flashcards. Key functionalities of the app include allowing users to create their own decks, add flashcards to a deck, and quiz themselves on the flashcards in a deck.
 
 Udaciflashcards currently does not have support for Android.
 
