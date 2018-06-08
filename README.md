@@ -1,8 +1,8 @@
 # Udaciflashcards
 
-Udaciflashcards is the final assessment project for Udacity's React course. It is a flashcards app, which users can use to study sets of flashcards. Users are able to create sets of flashcards called 'decks'. They are then able to add flashcards to these decks and take quizzes on the decks.
+Udaciflashcards, the final assessment project for Udacity's React course, is an IOS app created with React Native. Users can use the app to study sets of flashcards. Key functionalities of the app include allowing users to create their own decks, adding flashcards to a deck, and quizzing themselves on the flashcards in a deck.
 
-This is an IOS app. Currently there isn't support for Android.
+Udaciflashcards currently does not have support for Android.
 
 ## Start Developing
 
@@ -13,10 +13,7 @@ After cloning the repository, to get started developing:
     - `yarn install`
 * Boot up the app in Expo and run on the IOS simulator or IOS device
     - `yarn start`
-    - `i` to open the IOS simulator, or …
-    - Scan the QR code to open the app on your IOS device through the expo app
-
-Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+    - `i` to open the IOS simulator or scan the QR code to open the app on your IOS device through the expo app
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
