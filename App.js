@@ -25,6 +25,14 @@ const store = createStore(
   applyMiddleware(thunk, promise, logger)
 );
 
+function AppStatusBar ({backgroundColor, ...props}) {
+  return (
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
+
 const Tabs = createBottomTabNavigator({
   MyFlashcardSets: {
     screen: MyFlashcardSets,
@@ -131,6 +139,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
+          <StatusBar backgroundColor={midBlack} barStyle="light-content" />
           <MainNavigator />
         </View>
       </Provider>
