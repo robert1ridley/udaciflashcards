@@ -7,7 +7,7 @@ import { createLogger } from 'redux-logger';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Constants } from 'expo'
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import { Ionicons, FontAwesome, MaterialIcons } from '@expo/vector-icons';
 
 import sets from './reducers';
 import MyFlashcardSets from './Components/MyFlashcardSets';
@@ -18,6 +18,7 @@ import { white, purple, midBlack } from './utils/colours';
 import QuizQuestion from './Components/QuizQuestion';
 import QuizAnswer from './Components/QuizAnswer';
 import QuizResult from './Components/QuizResult';
+import { grey } from './utils/colours';
 
 const logger = createLogger();
 const store = createStore(
@@ -38,14 +39,14 @@ const Tabs = createBottomTabNavigator({
     screen: MyFlashcardSets,
     navigationOptions: {
       tabBarLabel: 'My Sets',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <MaterialIcons name='library-books' size={30} color={tintColor} />
     },
   },
   AddFlashcardSet: {
     screen: AddFlashcardSet,
     navigationOptions: {
       tabBarLabel: 'Add Flashcard Set',
-      tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <MaterialIcons name='library-add' size={30} color={tintColor} />
     },
   },
 }, {
@@ -57,7 +58,7 @@ const Tabs = createBottomTabNavigator({
     style: {
       height: 56,
       backgroundColor: white,
-      shadowColor: 'rgba(0, 0, 0, 0.24)',
+      shadowColor: grey,
       shadowOffset: {
         width: 0,
         height: 3
