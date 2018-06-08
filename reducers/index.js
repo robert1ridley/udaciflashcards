@@ -1,11 +1,21 @@
-import { FETCH_SETS, ADD_SET, ADD_FLASHCARD, RESET_QUIZ, SET_QUIZ_QUESTIONS, GET_NEXT_QUESTION, CORRECT_ANSWER } from '../actions/flashcardSets'
+import { 
+  FETCH_SETS, 
+  ADD_SET, 
+  ADD_FLASHCARD, 
+  RESET_QUIZ, 
+  SET_QUIZ_QUESTIONS, 
+  GET_NEXT_QUESTION, 
+  CORRECT_ANSWER,
+  QUIZ_COMPLETED
+} from '../actions/flashcardSets';
 
 const initialState = {
   sets: [],
   questions: [],
   currentQuestionIndex: 0,
   correctAnswers: 0,
-  numberOfQuestionsAsked: 0
+  numberOfQuestionsAsked: 0,
+  quizForToday: false
 };
 
 function sets (state = initialState, action) {
@@ -55,7 +65,12 @@ function sets (state = initialState, action) {
         correctAnswers: state.correctAnswers + 1,
         currentQuestionIndex:  state.questions.length-1 === state.currentQuestionIndex ? state.currentQuestionIndex : state.currentQuestionIndex  + 1,
         numberOfQuestionsAsked: state.numberOfQuestionsAsked + 1
-      }    
+      }
+    case QUIZ_COMPLETED :
+      return {
+        ...state,
+        quizForToday: action.data 
+      }
     default :
       return state
   }

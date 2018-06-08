@@ -17,3 +17,20 @@ export function questionRandomizer(thisSet) {
   return thisSet;
 }
 
+export function getDate () {
+  var currentDate = new Date();
+  var dd = currentDate.getDate();
+  var mm = currentDate.getMonth()+1;
+  var yyyy = currentDate.getFullYear();
+
+  if(dd<10) {
+      dd = '0'+dd
+  } 
+
+  if(mm<10) {
+      mm = '0'+mm
+  } 
+
+  currentDate = mm + '/' + dd + '/' + yyyy;
+  return currentDate;
+}

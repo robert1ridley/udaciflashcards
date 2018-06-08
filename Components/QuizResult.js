@@ -2,9 +2,14 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { darkBlue, white, darkGreen } from '../utils/colours';
-import { generateUid } from '../utils/helpers';
+import { generateUid, getDate } from '../utils/helpers';
+import { addQuizScore } from '../utils/api';
 
 class QuizResult extends React.Component {
+  componentDidMount() {
+    const currentDate = getDate()
+    addQuizScore(currentDate)
+  }
   render () {
     const { questions, correctAnswers, navigation } = this.props;
     const itemName = navigation.getParam('itemName');

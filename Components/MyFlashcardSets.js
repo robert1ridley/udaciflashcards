@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { View, Text, ScrollView, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Card } from 'react-native-elements';
-import { fetchFlashcardSets } from '../utils/api';
-import { formatData } from '../utils/helpers';
-import { white, black, grey } from '../utils/colours';
+import { fetchFlashcardSets, fetchQuizzes } from '../utils/api';
+import { formatData, getDate } from '../utils/helpers';
+import { white, black, grey, darkGreen } from '../utils/colours';
 import { fetchSets } from '../actions/flashcardSets';
+import { Entypo } from '@expo/vector-icons';
+import { quizCompleted } from '../actions/flashcardSets';
 
 class MyFlashcardSets extends React.Component {
   componentDidMount() {
@@ -16,16 +18,22 @@ class MyFlashcardSets extends React.Component {
       )
       .then(data => {
         this.props.dispatch(fetchSets(data))
-      }
-    )
+      })
+      const currentDate = getDate()
+      fetchQuizzes(currentDate)
+      .then(data => this.props.dispatch(quizCompleted(data)))
   }
 
   _keyExtractor = (item, index) => item.id;
 
   render() {
-    const { sets } = this.props;
+    const { sets, quizDoneToday } = this.props;
     return (
       <View style={styles.pageContainer}>
+        <View style={(quizDoneToday || sets.length === 0) ? {display: 'none'} : styles.quizNotification}>
+          <Entypo style={{marginRight: 5}} name='emoji-flirt' size={20} color={white} />
+          <Text style={{color: white}}>Don't forget to do a quiz today!</Text>
+        </View>
         {
           sets.length!==0 ?
           <FlatList
@@ -71,11 +79,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  quizNotification: {
+    backgroundColor: darkGreen, 
+    height: 35,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 
 const mapStateToProps = state => ({
-  sets: state.sets
+  sets: state.sets,
+  quizDoneToday: state.quizForToday
 });
 
 

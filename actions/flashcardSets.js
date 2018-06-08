@@ -5,6 +5,7 @@ export const RESET_QUIZ = 'RESET_QUIZ';
 export const SET_QUIZ_QUESTIONS = 'SET_QUIZ_QUESTIONS';
 export const GET_NEXT_QUESTION = 'GET_NEXT_QUESTION';
 export const CORRECT_ANSWER = 'CORRECT_ANSWER';
+export const QUIZ_COMPLETED = 'QUIZ_COMPLETED';
 
 export function fetchSets (sets) {
   return {
@@ -50,5 +51,12 @@ export function correctAnswer () {
 export function getNextQuestion () {
   return {
     type: GET_NEXT_QUESTION
+  }
+}
+
+export function quizCompleted (data) {
+  return {
+    type: QUIZ_COMPLETED,
+    data
   }
 }
