@@ -4,11 +4,15 @@ import { connect } from 'react-redux';
 import { darkBlue, white, darkGreen } from '../utils/colours';
 import { generateUid, getDate } from '../utils/helpers';
 import { addQuizScore } from '../utils/api';
+import { quizCompleted } from '../actions/flashcardSets';
 
 class QuizResult extends React.Component {
   componentDidMount() {
     const currentDate = getDate()
     addQuizScore(currentDate)
+    .then(() => {
+      this.props.dispatch(quizCompleted(currentDate, true))
+    })
   }
   render () {
     const { questions, correctAnswers, navigation } = this.props;

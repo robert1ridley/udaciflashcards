@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, Text, ScrollView, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { Card } from 'react-native-elements';
-import { fetchFlashcardSets, fetchQuizzes } from '../utils/api';
+import { fetchFlashcardSets, fetchQuizzes, clearAll } from '../utils/api';
 import { formatData, getDate } from '../utils/helpers';
 import { white, black, grey, darkGreen } from '../utils/colours';
 import { fetchSets } from '../actions/flashcardSets';
@@ -12,6 +12,7 @@ import { quizCompleted } from '../actions/flashcardSets';
 
 class MyFlashcardSets extends React.Component {
   componentDidMount() {
+    // clearAll()
     fetchFlashcardSets()
       .then(result => 
         formatData(result)
@@ -21,16 +22,17 @@ class MyFlashcardSets extends React.Component {
       })
       const currentDate = getDate()
       fetchQuizzes(currentDate)
-      .then(data => this.props.dispatch(quizCompleted(data)))
+      .then(data => this.props.dispatch(quizCompleted(currentDate, data)))
   }
 
   _keyExtractor = (item, index) => item.id;
 
   render() {
     const { sets, quizDoneToday } = this.props;
+    const dateToday = getDate()
     return (
       <View style={styles.pageContainer}>
-        <View style={(quizDoneToday || sets.length === 0) ? {display: 'none'} : styles.quizNotification}>
+        <View style={(quizDoneToday[dateToday] || sets.length === 0) ? {display: 'none'} :styles.quizNotification}>
           <Entypo style={{marginRight: 5}} name='emoji-flirt' size={20} color={white} />
           <Text style={{color: white}}>Don't forget to do a quiz today!</Text>
         </View>

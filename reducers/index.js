@@ -15,7 +15,7 @@ const initialState = {
   currentQuestionIndex: 0,
   correctAnswers: 0,
   numberOfQuestionsAsked: 0,
-  quizForToday: false
+  quizForToday: {}
 };
 
 function sets (state = initialState, action) {
@@ -69,7 +69,9 @@ function sets (state = initialState, action) {
     case QUIZ_COMPLETED :
       return {
         ...state,
-        quizForToday: action.data 
+        quizForToday: {
+          [action.date]: action.data
+        }
       }
     default :
       return state

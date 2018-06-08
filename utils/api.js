@@ -45,13 +45,12 @@ export function addQuizScore (date) {
   }))
 }
 
+const keys = [FLASHCARD_SET_STORAGE_KEY, QUIZ_RECORD_STORAGE_KEY]
 
-// export function clearAll () {
-//   return AsyncStorage.getItem(FLASHCARD_SET_STORAGE_KEY)
-//     .then((results) => {
-//       const data = JSON.parse(results)
-//       data = undefined
-//       delete data
-//       AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(data))
-//     })
-// }
+export function clearAll () {
+  return AsyncStorage.multiRemove(keys, (err) => {
+    if(err){
+      console.log(err)
+    }
+  });
+}

@@ -54,9 +54,10 @@ export function getNextQuestion () {
   }
 }
 
-export function quizCompleted (data) {
+export function quizCompleted (date, data) {
   return {
     type: QUIZ_COMPLETED,
+    date,
     data
   }
 }
