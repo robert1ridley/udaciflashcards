@@ -76,7 +76,8 @@ const mapStateToProps = state => ({
   questions: state.questions,
   currentQuestionIndex: state.currentQuestionIndex,
   correctAnswers: state.correctAnswers,
-  numberOfQuestionsAsked: state.numberOfQuestionsAsked
+  numberOfQuestionsAsked: state.numberOfQuestionsAsked,
+  loaded: state.loaded
 })
 
 export default connect(mapStateToProps)(QuizQuestion);

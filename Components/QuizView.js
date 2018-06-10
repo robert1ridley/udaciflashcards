@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { questionRandomizer } from '../utils/helpers';
-import { setQuizQuestions, resetQuiz } from '../actions/flashcardSets';
+import { resetQuiz } from '../actions/flashcardSets';
 import QuizQuestion from './QuizQuestion';
 
 class QuizView extends React.Component {
@@ -9,7 +9,7 @@ class QuizView extends React.Component {
     const { navigation } = this.props;
     const thisSet = navigation.getParam('thisSet');
     const randomizedQuestions = questionRandomizer(thisSet.flashcards)
-    this.props.dispatch(setQuizQuestions(randomizedQuestions));
+    this.props.dispatch(resetQuiz(randomizedQuestions));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -19,7 +19,7 @@ class QuizView extends React.Component {
       const thisSet = navigation.getParam('thisSet');
       if(quizId) {
         const randomizedQuestions = questionRandomizer(thisSet.flashcards)
-        this.props.dispatch(setQuizQuestions(randomizedQuestions));
+        this.props.dispatch(resetQuiz(randomizedQuestions));
       }
     }
   }

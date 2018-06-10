@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, ScrollView, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-elements';
 import { fetchFlashcardSets, fetchQuizzes, clearAll } from '../utils/api';
 import { formatData, getDate } from '../utils/helpers';

@@ -2,11 +2,11 @@ import {
   FETCH_SETS, 
   ADD_SET, 
   ADD_FLASHCARD, 
-  RESET_QUIZ, 
   SET_QUIZ_QUESTIONS, 
   GET_NEXT_QUESTION, 
   CORRECT_ANSWER,
-  QUIZ_COMPLETED
+  QUIZ_COMPLETED,
+  LOADED
 } from '../actions/flashcardSets';
 
 const initialState = {
@@ -15,7 +15,9 @@ const initialState = {
   currentQuestionIndex: 0,
   correctAnswers: 0,
   numberOfQuestionsAsked: 0,
-  quizForToday: {}
+  quizForToday: {},
+  quizReset: true,
+  loaded: false
 };
 
 function sets (state = initialState, action) {
@@ -36,22 +38,14 @@ function sets (state = initialState, action) {
         sets: [...state.sets.map((item) => ({...item,
           flashcards: item.id === action.setId ? item.flashcards.concat([action.flashcard]) : item.flashcards}))]
       }
-    case RESET_QUIZ :
-      return {
-        ...state,
-        questions: [],
-        currentQuestionIndex: 0,
-        correctAnswers: 0,
-        numberOfQuestionsAsked: 0,
-        answerVisible: false
-      }
     case SET_QUIZ_QUESTIONS :
       return {
         ...state,
         questions: action.questions,
         currentQuestionIndex: 0,
         correctAnswers: 0,
-        numberOfQuestionsAsked: 0
+        numberOfQuestionsAsked: 0,
+        loaded: false
       }
     case GET_NEXT_QUESTION :
       return {
@@ -72,6 +66,11 @@ function sets (state = initialState, action) {
         quizForToday: {
           [action.date]: action.data
         }
+      }
+    case LOADED :
+      return {
+        ...state,
+        loaded: true
       }
     default :
       return state

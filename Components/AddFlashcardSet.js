@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { white, darkGreen } from '../utils/colours';
 import { generateUid } from '../utils/helpers';
 import { addFlashcardSet, clearAll } from '../utils/api';
-import { NavigationActions } from 'react-navigation';
 import { addSet } from '../actions/flashcardSets';
 
 class AddFlashcardSet extends React.Component {
