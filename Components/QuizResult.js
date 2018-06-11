@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { darkBlue, white, darkGreen } from '../utils/colours';
-import { generateUid, getDate } from '../utils/helpers';
+import { generateUid, getDate, cancelNotifications } from '../utils/helpers';
 import { addQuizScore } from '../utils/api';
 import { quizCompleted } from '../actions/flashcardSets';
 
@@ -13,6 +13,7 @@ class QuizResult extends React.Component {
     .then(() => {
       this.props.dispatch(quizCompleted(currentDate, true))
     })
+    .then(() => cancelNotifications())
   }
   render () {
     const { questions, correctAnswers, navigation } = this.props;

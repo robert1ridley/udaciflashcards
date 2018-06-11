@@ -11,7 +11,7 @@ import { quizCompleted } from '../actions/flashcardSets';
 
 class MyFlashcardSets extends React.Component {
   componentDidMount() {
-    // clearAll()
+    clearAll()
     fetchFlashcardSets()
       .then(result => 
         formatData(result)
@@ -24,7 +24,7 @@ class MyFlashcardSets extends React.Component {
       .then(data => this.props.dispatch(quizCompleted(currentDate, data)))
   }
 
-  _keyExtractor = (item, index) => item.id;
+  _keyExtractor = (item) => item.id;
 
   render() {
     const { sets, quizDoneToday } = this.props;

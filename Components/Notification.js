@@ -22,7 +22,6 @@ class Notification extends React.Component {
     if(nextProps.quizForToday !== this.props.quizForToday) {
       const { quizForToday } = nextProps;
       setLocalNotification(quizForToday)
-      this.listenForNotifications();
     }
   }
 

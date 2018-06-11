@@ -43,7 +43,7 @@ export async function setLocalNotification(quizCompleted) {
   const { status } = await Permissions.getAsync(
     Permissions.NOTIFICATIONS
   );
-  if (status === 'granted') {
+  if (status === 'undetermined') {
     AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
     .then((notified) => {
@@ -52,8 +52,11 @@ export async function setLocalNotification(quizCompleted) {
         if (quizCompleted[dateToday] === false) {
           Notifications.cancelAllScheduledNotificationsAsync()
           let sendTime = new Date();
-          sendTime.setHours(17)
-          sendTime.setMinutes(0)
+          sendTime.setHours(19)
+          sendTime.setMinutes(8)
+          if(sendTime < new Date ()) {
+            sendTime.setDate(sendTime.getDate() + 1)
+          }
           Notifications.scheduleLocalNotificationAsync(
             newNotification(),
             {
@@ -62,7 +65,7 @@ export async function setLocalNotification(quizCompleted) {
             }
           )
           AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
-        } else {console.log("NotificationCancelled")}
+        } 
       }
     })
   }
@@ -71,7 +74,7 @@ export async function setLocalNotification(quizCompleted) {
   }
 }
 
-export function clearLocalNotification () {
+export function cancelNotifications () {
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
     .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
