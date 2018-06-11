@@ -11,7 +11,7 @@ import { quizCompleted } from '../actions/flashcardSets';
 
 class MyFlashcardSets extends React.Component {
   componentDidMount() {
-    clearAll()
+    // clearAll()
     fetchFlashcardSets()
       .then(result => 
         formatData(result)

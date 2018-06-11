@@ -52,8 +52,8 @@ export async function setLocalNotification(quizCompleted) {
         if (quizCompleted[dateToday] === false) {
           Notifications.cancelAllScheduledNotificationsAsync()
           let sendTime = new Date();
-          sendTime.setHours(19)
-          sendTime.setMinutes(8)
+          sendTime.setHours(18)
+          sendTime.setMinutes(0)
           if(sendTime < new Date ()) {
             sendTime.setDate(sendTime.getDate() + 1)
           }
