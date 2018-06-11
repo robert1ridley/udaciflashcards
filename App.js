@@ -6,8 +6,8 @@ import promise from 'redux-promise';
 import { createLogger } from 'redux-logger';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Constants } from 'expo'
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import { Ionicons, FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import { View, StatusBar } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import sets from './reducers';
 import MyFlashcardSets from './Components/MyFlashcardSets';
@@ -24,14 +24,6 @@ const store = createStore(
   sets,
   applyMiddleware(thunk, promise, logger)
 );
-
-function AppStatusBar ({backgroundColor, ...props}) {
-  return (
-    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-    </View>
-  )
-}
 
 const Tabs = createBottomTabNavigator({
   MyFlashcardSets: {
