@@ -43,7 +43,7 @@ export async function setLocalNotification(quizCompleted) {
   const { status } = await Permissions.getAsync(
     Permissions.NOTIFICATIONS
   );
-  if (status === 'undetermined') {
+  if (status === 'granted') {
     AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
     .then((notified) => {
