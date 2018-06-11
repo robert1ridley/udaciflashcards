@@ -1,3 +1,7 @@
+import { Notifications, Permissions } from 'expo';
+import { AsyncStorage } from 'react-native';
+import { NOTIFICATION_KEY } from './api';
+
 export const generateUid = () => {
   function _p8(s) {
       var p = (Math.random().toString(16)+"000000000").substr(2,8);
@@ -33,4 +37,51 @@ export function getDate () {
 
   currentDate = mm + '/' + dd + '/' + yyyy;
   return currentDate;
+}
+
+export async function setLocalNotification(quizCompleted) {
+  const { status } = await Permissions.getAsync(
+    Permissions.NOTIFICATIONS
+  );
+  if (status === 'granted') {
+    AsyncStorage.getItem(NOTIFICATION_KEY)
+    .then(JSON.parse)
+    .then((notified) => {
+      if(notified === null) {
+        const dateToday = getDate();
+        if (quizCompleted[dateToday] === false) {
+          Notifications.cancelAllScheduledNotificationsAsync()
+          let sendTime = new Date();
+          sendTime.setHours(17)
+          sendTime.setMinutes(0)
+          Notifications.scheduleLocalNotificationAsync(
+            newNotification(),
+            {
+              time: sendTime,
+              repeat: 'day',
+            }
+          )
+          AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
+        } else {console.log("NotificationCancelled")}
+      }
+    })
+  }
+  else if (status !== 'granted') {
+    await Permissions.askAsync(Permissions.NOTIFICATIONS);
+  }
+}
+
+export function clearLocalNotification () {
+  return AsyncStorage.removeItem(NOTIFICATION_KEY)
+    .then(Notifications.cancelAllScheduledNotificationsAsync)
+}
+
+function newNotification () {
+  return {
+    title: 'Remember to complete a quiz',
+    body: "don't forget to complete a quiz today",
+    ios: {
+      sound: true,
+    },
+  }
 }

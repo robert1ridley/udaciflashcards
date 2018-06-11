@@ -5,7 +5,6 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import { createLogger } from 'redux-logger';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
-import { Constants } from 'expo'
 import { View, StatusBar } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -18,6 +17,7 @@ import { white, darkGreen, darkBlue, grey } from './utils/colours';
 import QuizQuestion from './Components/QuizQuestion';
 import QuizAnswer from './Components/QuizAnswer';
 import QuizResult from './Components/QuizResult';
+import Notification from './Components/Notification';
 
 const logger = createLogger();
 const store = createStore(
@@ -133,6 +133,7 @@ export default class App extends React.Component {
         <View style={{flex: 1}}>
           <StatusBar backgroundColor={darkBlue} barStyle="light-content" />
           <MainNavigator />
+          <Notification />
         </View>
       </Provider>
     );

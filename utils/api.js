@@ -2,6 +2,7 @@ import { AsyncStorage } from 'react-native';
 
 export const FLASHCARD_SET_STORAGE_KEY = 'UdaciFlashcards:set';
 export const QUIZ_RECORD_STORAGE_KEY = 'UdaciFlashcards:quizzes';
+export const NOTIFICATION_KEY = 'Udaciflashcards:notification';
 
 export function addFlashcardSet (set) {
   return AsyncStorage.mergeItem(FLASHCARD_SET_STORAGE_KEY, JSON.stringify({
@@ -26,7 +27,6 @@ export function fetchQuizzes (date) {
   return AsyncStorage.getItem(QUIZ_RECORD_STORAGE_KEY)
   .then((data) => JSON.parse(data))
   .then((data) => {
-    console.log(data)
     if(data === null) {
       return false
     }
@@ -45,7 +45,7 @@ export function addQuizScore (date) {
   }))
 }
 
-const keys = [FLASHCARD_SET_STORAGE_KEY, QUIZ_RECORD_STORAGE_KEY]
+const keys = [FLASHCARD_SET_STORAGE_KEY, QUIZ_RECORD_STORAGE_KEY, NOTIFICATION_KEY]
 
 export function clearAll () {
   return AsyncStorage.multiRemove(keys, (err) => {
