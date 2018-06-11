@@ -18,7 +18,7 @@ After cloning the repository, to get started developing:
 ## Local Notifications
 
 This app allows for users to receive local notifications if they have granted the app authorization.
-In the IOS simulator, the returned authorization will be 'undetermined'. To test the notifications are working in this environment:
+* In the IOS simulator, the returned authorization will be 'undetermined'. To test the notifications are working in this environment:
     - go to `utils/helpers.js`
     - on line 46, change `if (status === 'granted')` to `if (status === 'undetermined')`
 
