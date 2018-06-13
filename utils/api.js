@@ -33,7 +33,7 @@ export function deleteSingleFlashcard(setName, flashcard) {
       json[setName].flashcards.push(updatedFlashcards[i]);
     }
     console.log(json[setName].flashcards)
-    // AsyncStorage.setItem(FLASHCARD_SET_STORAGE_KEY,JSON.stringify(json))
+    AsyncStorage.setItem(FLASHCARD_SET_STORAGE_KEY,JSON.stringify(json))
   })
 }
 
