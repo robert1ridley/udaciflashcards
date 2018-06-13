@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, Modal, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
+import { View, Text, StyleSheet, Modal, TouchableOpacity, TextInput, KeyboardAvoidingView, Alert } from 'react-native';
 import { Badge } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { darkGreen, white, grey } from '../utils/colours';
-import { addFlashcardToSet } from '../utils/api';
+import { darkGreen, white, grey, red } from '../utils/colours';
+import { addFlashcardToSet, deleteSet } from '../utils/api';
 import { generateUid } from '../utils/helpers';
 import { addFlashcard } from '../actions/flashcardSets';
+import { removeSet } from '../actions/flashcardSets';
 
 class SingleFlashcardSet extends React.Component {
   state = {
@@ -40,12 +41,41 @@ class SingleFlashcardSet extends React.Component {
     }
   }
 
+  confirmDelete(){
+    const { navigation, sets } = this.props;
+    const itemName = navigation.getParam('itemName');
+    const itemId = navigation.getParam('itemId');
+    let setToDelete = sets.filter(item => item.id === itemId);
+    setToDelete = setToDelete[0];
+    deleteSet(itemName)
+    .then(() => {
+      this.props.dispatch(removeSet(setToDelete))
+    })
+    .then(() => {
+      navigation.navigate(
+        'Home'
+      )
+    })
+  }
+
+  deleteSet() {
+    Alert.alert(
+      'Delete',
+      'Are you sure you want to delete the set?',
+      [
+        {text: 'Yes', onPress: () => this.confirmDelete()},
+        {text: 'Cancel'},
+      ],
+      { cancelable: false }
+    )
+  }
+
   render() {
     const { navigation, sets } = this.props;
     const itemId = navigation.getParam('itemId');
     const itemName = navigation.getParam('itemName');
     const thisSetList = sets.filter(item => item.id === itemId);
-    thisSet = thisSetList[0];
+    let thisSet = thisSetList[0];
     if(thisSet) {
       return (
         <View style={styles.pageContainer}>
@@ -67,6 +97,9 @@ class SingleFlashcardSet extends React.Component {
               <Text style={styles.quizButtonText}>Start Quiz</Text>
             </TouchableOpacity>
           }
+          <TouchableOpacity style={styles.deleteButtonStyle} onPress={() => this.deleteSet()}>
+            <Text style={styles.buttonText}>Delete Set</Text>
+          </TouchableOpacity>
           <View>
             <Modal 
               visible={this.state.isVisible}
@@ -146,6 +179,12 @@ const styles = StyleSheet.create({
   quizButtonText: {
     color: darkGreen,
     textAlign: 'center'
+  },
+  deleteButtonStyle: {
+    backgroundColor: red,
+    marginTop: 20,
+    width: '70%',
+    padding: 15
   },
   inputContainer: {
     padding: 2,

@@ -23,6 +23,16 @@ export function addFlashcardToSet (setName, flashcard) {
   })
 }
 
+export function deleteSet (setName) {
+  return AsyncStorage.getItem(FLASHCARD_SET_STORAGE_KEY)
+    .then((results) => {
+      const data = JSON.parse(results)
+      data[setName] = undefined
+      delete data[setName]
+      AsyncStorage.setItem(FLASHCARD_SET_STORAGE_KEY, JSON.stringify(data))
+    })
+}
+
 export function fetchQuizzes (date) {
   return AsyncStorage.getItem(QUIZ_RECORD_STORAGE_KEY)
   .then((data) => JSON.parse(data))

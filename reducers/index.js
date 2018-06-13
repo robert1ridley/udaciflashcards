@@ -1,6 +1,7 @@
 import { 
   FETCH_SETS, 
   ADD_SET, 
+  REMOVE_SET,
   ADD_FLASHCARD, 
   SET_QUIZ_QUESTIONS, 
   GET_NEXT_QUESTION, 
@@ -31,6 +32,11 @@ function sets (state = initialState, action) {
       return {
         ...state,
         sets: [...state.sets, action.set]
+      }
+    case REMOVE_SET :
+      return {
+        ...state,
+        sets: state.sets.filter(item => item.id !== action.set.id)
       }
     case ADD_FLASHCARD :
       return {
