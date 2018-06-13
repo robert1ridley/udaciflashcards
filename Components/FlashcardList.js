@@ -55,7 +55,6 @@ class FlashcardList extends React.Component {
     const flashcards = currentSet.flashcards;
     return (
       <View style={{flex: 1}}>
-      {console.log(flashcards)}
       {
         flashcards &&
         <SwipeListView
