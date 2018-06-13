@@ -7,12 +7,18 @@ import { addFlashcardToSet, deleteSet } from '../utils/api';
 import { generateUid } from '../utils/helpers';
 import { addFlashcard } from '../actions/flashcardSets';
 import { removeSet } from '../actions/flashcardSets';
+import UpdateName from './UpdateName';
 
 class SingleFlashcardSet extends React.Component {
   state = {
     isVisible: false,
+    isUpdateVisible: false,
     question: '',
     answer: ''
+  }
+
+  setUpdateModalVisible(visible) {
+    this.setState({isUpdateVisible: visible});
   }
 
   setModalVisible(visible) {
@@ -121,6 +127,7 @@ class SingleFlashcardSet extends React.Component {
               reverse
               raised
               name='edit'
+              onPress={() => this.setState({isUpdateVisible: true})}
               type='entypo'
               color='#2089dc'
             />
@@ -168,6 +175,13 @@ class SingleFlashcardSet extends React.Component {
                 </TouchableOpacity>
               </KeyboardAvoidingView>
             </Modal>
+            <UpdateName
+              setName={itemName}
+              itemId={itemId}
+              isUpdateVisible={this.state.isUpdateVisible}
+              setUpdateModalVisible={() => this.setUpdateModalVisible(!this.state.isUpdateVisible)}
+              navigation={navigation}
+            />
           </View> 
         </View>
       )
@@ -188,6 +202,12 @@ const styles = StyleSheet.create({
     paddingRight: 60
   },
   buttonStyle: {
+    //Raised
+    shadowColor: 'rgba(0,0,0, .4)',
+    shadowOffset: { height: 1, width: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    //
     backgroundColor: darkGreen,
     marginTop: 20,
     width: '70%',
@@ -198,6 +218,12 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   cancelButtonStyle: {
+    //Raised
+    shadowColor: 'rgba(0,0,0, .4)',
+    shadowOffset: { height: 1, width: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    //
     backgroundColor: grey,
     marginTop: 20,
     width: '70%',

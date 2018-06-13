@@ -32,7 +32,6 @@ export function deleteSingleFlashcard(setName, flashcard) {
     for(var i = 0; i<updatedFlashcards.length; i++) {
       json[setName].flashcards.push(updatedFlashcards[i]);
     }
-    console.log(json[setName].flashcards)
     AsyncStorage.setItem(FLASHCARD_SET_STORAGE_KEY,JSON.stringify(json))
   })
 }
@@ -44,6 +43,25 @@ export function deleteSet (setName) {
       data[setName] = undefined
       delete data[setName]
       AsyncStorage.setItem(FLASHCARD_SET_STORAGE_KEY, JSON.stringify(data))
+    })
+}
+
+export function updateSetName (oldName, newName) {
+  return AsyncStorage.getItem(FLASHCARD_SET_STORAGE_KEY)
+    .then((results) => {
+      const oldData = JSON.parse(results)
+      const newData = {}
+      Object.keys(oldData).forEach(key => {
+        const value = oldData[key];
+
+        if(key === oldName) {
+          newData[newName] = value;
+          newData[newName].setName = newName;
+        } else {
+          newData[key] = value;
+        }
+      })
+      AsyncStorage.setItem(FLASHCARD_SET_STORAGE_KEY, JSON.stringify(newData))
     })
 }
 

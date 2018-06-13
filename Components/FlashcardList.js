@@ -31,7 +31,7 @@ class FlashcardList extends React.Component {
   confirmDelete(flashcard) {
     Alert.alert(
       'Delete',
-      'Are you sure you want to delete the set?',
+      'Are you sure you want to delete this flashcard?',
       [
         {text: 'Yes', onPress: () => this.deleteFlashcard(flashcard)},
         {text: 'Cancel'},

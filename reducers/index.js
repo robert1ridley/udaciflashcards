@@ -2,6 +2,7 @@ import {
   FETCH_SETS, 
   ADD_SET, 
   REMOVE_SET,
+  RENAME_SET,
   ADD_FLASHCARD,
   REMOVE_FLASHCARD,
   SET_QUIZ_QUESTIONS, 
@@ -38,6 +39,12 @@ function sets (state = initialState, action) {
       return {
         ...state,
         sets: state.sets.filter(item => item.id !== action.set.id)
+      }
+    case RENAME_SET :
+      return {
+        ...state,
+        sets: [...state.sets.map((item) => ({...item,
+          setName: item.id === action.setId ? action.newName : item.setName}))]
       }
     case ADD_FLASHCARD :
       return {
