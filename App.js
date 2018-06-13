@@ -18,6 +18,7 @@ import QuizQuestion from './Components/QuizQuestion';
 import QuizAnswer from './Components/QuizAnswer';
 import QuizResult from './Components/QuizResult';
 import Notification from './Components/Notification';
+import FlashcardList from './Components/FlashcardList';
 
 const logger = createLogger();
 const store = createStore(
@@ -73,6 +74,16 @@ const MainNavigator = createStackNavigator({
   },
   SingleFlashcardSet: {
     screen: SingleFlashcardSet,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: darkBlue,
+      },
+      headerTitle: navigation.state.params.itemName
+    })
+  },
+  FlashcardList: {
+    screen: FlashcardList,
     navigationOptions: ({ navigation }) => ({
       headerTintColor: white,
       headerStyle: {

@@ -2,6 +2,7 @@ export const FETCH_SETS = 'FETCH_SETS';
 export const ADD_SET = 'ADD_SET';
 export const REMOVE_SET = 'REMOVE_SET';
 export const ADD_FLASHCARD = 'ADD_FLASHCARD';
+export const REMOVE_FLASHCARD = 'REMOVE_FLASHCARD';
 export const SET_QUIZ_QUESTIONS = 'SET_QUIZ_QUESTIONS';
 export const GET_NEXT_QUESTION = 'GET_NEXT_QUESTION';
 export const CORRECT_ANSWER = 'CORRECT_ANSWER';
@@ -32,6 +33,14 @@ export function removeSet (set) {
 export function addFlashcard (setId, flashcard) {
   return {
     type: ADD_FLASHCARD,
+    setId,
+    flashcard
+  }
+}
+
+export function removeFlashcard (setId, flashcard) {
+  return {
+    type: REMOVE_FLASHCARD,
     setId,
     flashcard
   }

@@ -51,12 +51,24 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   purpleButtonStyle: {
+    //Raised
+    shadowColor: 'rgba(0,0,0, .4)',
+    shadowOffset: { height: 1, width: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    //
     backgroundColor: darkGreen,
     marginTop: 20,
     width: '70%',
     padding: 15
   },
   whiteButtonStyle: {
+    //Raised
+    shadowColor: 'rgba(0,0,0, .4)',
+    shadowOffset: { height: 1, width: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    //
     backgroundColor: white,
     marginTop: 20,
     width: '70%',

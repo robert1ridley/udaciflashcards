@@ -23,6 +23,20 @@ export function addFlashcardToSet (setName, flashcard) {
   })
 }
 
+export function deleteSingleFlashcard(setName, flashcard) {
+  return AsyncStorage.getItem(FLASHCARD_SET_STORAGE_KEY)
+  .then((data) => JSON.parse(data))
+  .then((json) => {
+    const updatedFlashcards = json[setName].flashcards.filter(item => item.id !== flashcard.id)
+    json[setName].flashcards.splice(0, json[setName].flashcards.length);
+    for(var i = 0; i<updatedFlashcards.length; i++) {
+      json[setName].flashcards.push(updatedFlashcards[i]);
+    }
+    console.log(json[setName].flashcards)
+    // AsyncStorage.setItem(FLASHCARD_SET_STORAGE_KEY,JSON.stringify(json))
+  })
+}
+
 export function deleteSet (setName) {
   return AsyncStorage.getItem(FLASHCARD_SET_STORAGE_KEY)
     .then((results) => {

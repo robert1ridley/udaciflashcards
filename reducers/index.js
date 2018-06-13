@@ -2,7 +2,8 @@ import {
   FETCH_SETS, 
   ADD_SET, 
   REMOVE_SET,
-  ADD_FLASHCARD, 
+  ADD_FLASHCARD,
+  REMOVE_FLASHCARD,
   SET_QUIZ_QUESTIONS, 
   GET_NEXT_QUESTION, 
   CORRECT_ANSWER,
@@ -43,6 +44,12 @@ function sets (state = initialState, action) {
         ...state,
         sets: [...state.sets.map((item) => ({...item,
           flashcards: item.id === action.setId ? item.flashcards.concat([action.flashcard]) : item.flashcards}))]
+      }
+      case REMOVE_FLASHCARD :
+      return {
+        ...state,
+        sets: [...state.sets.map((item) => ({...item,
+          flashcards: item.id === action.setId ? item.flashcards.filter(FC => FC.id !== action.flashcard.id) : item.flashcards}))]
       }
     case SET_QUIZ_QUESTIONS :
       return {

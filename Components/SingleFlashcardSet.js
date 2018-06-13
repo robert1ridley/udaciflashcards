@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, Modal, TouchableOpacity, TextInput, KeyboardAvoidingView, Alert } from 'react-native';
-import { Badge } from 'react-native-elements';
+import { Badge, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { darkGreen, white, grey, red } from '../utils/colours';
+import { darkGreen, white, grey, red, darkBlue } from '../utils/colours';
 import { addFlashcardToSet, deleteSet } from '../utils/api';
 import { generateUid } from '../utils/helpers';
 import { addFlashcard } from '../actions/flashcardSets';
@@ -85,9 +85,6 @@ class SingleFlashcardSet extends React.Component {
             value={thisSet.flashcards.length}
             textStyle={{ color: white }}
           />
-          <TouchableOpacity style={styles.buttonStyle} onPress={() => this.setState({isVisible: true})}>
-            <Text style={styles.buttonText}>Add Flashcard</Text>
-          </TouchableOpacity>
           {
             thisSet.flashcards.length !== 0 &&
             <TouchableOpacity style={styles.quizButtonStyle} onPress={() => this.props.navigation.navigate(
@@ -97,9 +94,45 @@ class SingleFlashcardSet extends React.Component {
               <Text style={styles.quizButtonText}>Start Quiz</Text>
             </TouchableOpacity>
           }
-          <TouchableOpacity style={styles.deleteButtonStyle} onPress={() => this.deleteSet()}>
-            <Text style={styles.buttonText}>Delete Set</Text>
-          </TouchableOpacity>
+          <View style={{flexDirection: 'row', marginTop: 20}}>
+            <Icon
+              reverse
+              raised
+              name='add-to-list'
+              onPress={() => this.setState({isVisible: true})}
+              type='entypo'
+              color={darkGreen}
+            />
+            {
+              thisSet.flashcards.length !== 0 &&
+              <Icon
+                reverse
+                raised
+                name='cards'
+                onPress={() => this.props.navigation.navigate(
+                  'FlashcardList',
+                  { itemName: itemName, itemId: itemId, thisSet: thisSet }
+                )}
+                type='material-community'
+                color={darkBlue}
+              />
+            }
+            <Icon
+              reverse
+              raised
+              name='edit'
+              type='entypo'
+              color='#2089dc'
+            />
+            <Icon
+              reverse
+              raised
+              name='delete'
+              onPress={() => this.deleteSet()}
+              type='material-community'
+              color={red}
+            />
+          </View>
           <View>
             <Modal 
               visible={this.state.isVisible}
@@ -171,6 +204,12 @@ const styles = StyleSheet.create({
     padding: 15
   },
   quizButtonStyle: {
+    //Raised
+    shadowColor: 'rgba(0,0,0, .4)',
+    shadowOffset: { height: 1, width: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    //
     backgroundColor: white,
     marginTop: 20,
     width: '70%',
