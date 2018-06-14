@@ -1,5 +1,20 @@
 {
   "expo": {
-    "sdkVersion": "23.0.0"
+    "sdkVersion": "23.0.0",
+    "orientation": "portrait",
+    "name": "udaciflashcards",
+    "description": "Build flashcard sets and quiz yourself.",
+    "slug": "udaciflashcards",
+    "version": "1.0",
+    "icon": "./images/study.png",
+    "notification": {
+      "icon": "./images/study.png"
+    },
+    "ios": {
+     "bundleIdentifier": "org.udaciflashcards.exp"
+    },
+    "android": {
+     "package": "org.udaciflashcards.exp"
+    }
   }
 }
