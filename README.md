@@ -2,6 +2,8 @@
 
 Udaciflashcards, the final assessment project for Udacity's React course, is an IOS app created with React Native. Users can use the app to study sets of flashcards. Key functionalities of the app include allowing users to create their own decks, add flashcards to a deck, and quiz themselves on the flashcards in a deck.
 
+If you have the IOS Expo app, you can try out udaciflashcards here: [udaciflashcards](https://expo.io/@robertridley1988/udaciflashcards). After opening the webpage up on your mobile browser, click the button 'Open project using expo'.  If you don't have Expo, you can try the link to open the project in the browser.
+
 Udaciflashcards currently does not have support for Android.
 
 ## Start Developing
